@@ -1,6 +1,13 @@
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import styles from './button.module.css';
 
-export const Button = ({ children, outline, href, ...rest }) => {
+type ButtonProps = {
+    children: ReactNode,
+    outline?: HTMLElement,
+    href?: string
+} & ButtonHTMLAttributes<HTMLButtonElement>
+
+export const Button = ({ children, outline, href, ...rest }: ButtonProps) => {
     if (href) {
         return (
             <a href={href} className={outline ? styles.outline : styles.btn}>

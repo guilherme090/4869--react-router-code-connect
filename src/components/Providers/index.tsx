@@ -1,4 +1,4 @@
-import { IconButton } from "../IconButton"
+import { IconButton } from "../IconButton/index.tsx"
 import google from './google.png'
 import github from './github.png'
 

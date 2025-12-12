@@ -7,8 +7,12 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
-    "target": "esnext",
+    "module": "node16",
+    "moduleResolution": "node16",
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "target": "ESnext",
     "types": [],
     // For nodejs:
     // "lib": ["esnext"],
@@ -39,7 +43,7 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },  
   "include": ["src/**/*", "tests/**/*"]
 }

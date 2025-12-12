@@ -1,6 +1,11 @@
+import type { ReactNode } from 'react'
 import styles from './fieldset.module.css'
 
-export const Fieldset = ({ children, ...props }) => {
+type FieldsetProps = {
+    children: ReactNode
+}
+
+export const Fieldset = ({ children, ...props }: FieldsetProps) => {
     return (
         <fieldset className={styles.fieldset} {...props}>
             {children}

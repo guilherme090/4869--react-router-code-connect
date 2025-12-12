@@ -1,5 +1,14 @@
-import React from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 import styles from './typography.module.css';
+
+type VariantType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'bold' | 'body';
+
+interface TypographyProps extends HTMLAttributes<HTMLElement> {
+  variant?: VariantType,
+  children: ReactNode,
+  className?: string,
+  color?: string
+}
 
 const Typography = ({ 
   variant = 'body', 
@@ -7,7 +16,7 @@ const Typography = ({
   className = '', 
   color,
   ...props 
-}) => {
+}: TypographyProps) => {
   const getTag = () => {
     switch (variant) {
       case 'h1':
@@ -31,7 +40,7 @@ const Typography = ({
   };
 
   const getStyle = () => {
-    const style = {};
+    const style: React.CSSProperties & { [key: `--${string}`]: string } = {};
     // Se uma cor for fornecida, usa ela, senão usa --light-gray como padrão
     const colorValue = color ? `var(${color})` : 'var(--light-gray)';
     style['--typography-color'] = colorValue;
