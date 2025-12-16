@@ -1,7 +1,9 @@
-import { Avatar } from "../Avatar"
+import { Avatar } from "../Avatar/index.tsx"
 import styles from './author.module.css'
 
-export const Author = ({ author }) => {
+import type { UserType } from "../../pages/Feed/data.ts"
+
+export const Author = ({ author }: { author: UserType }) => {
     return (<ul className={styles.author}>
         <li>
             <Avatar author={author} />

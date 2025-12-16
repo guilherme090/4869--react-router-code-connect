@@ -1,7 +1,9 @@
-import { Comment } from "../Comment"
+import { Comment } from "../Comment/index.tsx"
 import styles from './commentlist.module.css'
 
-export const CommentList = ({ comments }) => {
+import type { CommentType } from "../../pages/Feed/data.ts"
+
+export const CommentList = ({ comments }: { comments: CommentType[] }) => {
     return (
         <section className={styles.comments}>
             <h2>

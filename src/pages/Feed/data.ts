@@ -1,36 +1,63 @@
+export type UserType = {
+    id: number,
+    name: string,
+    username: string,
+    avatar: string
+}
+
+export type CommentType = {
+    id: number,
+    text: string,
+    createdAt: string,
+    updatedAt: string,
+    authorId: number,
+    author: UserType
+}
+
+export type postType = {
+    "cover": string,
+    "title": string,
+    "slug": string,
+    "body": string,
+    "markdown": string
+    "author": UserType
+    "likes": number
+    "comments": CommentType[]
+}
+
 // Mock de autores
-export const ana = {
+export const ana: UserType = {
     id: 1,
     name: "Ana Paula",
     username: "anapaula_dev",
     avatar: "https://raw.githubusercontent.com/viniciosneves/code-connect-assets/main/authors/anabeatriz_dev.png",
 };
 
-export const bruno = {
+export const bruno: UserType = {
     id: 2,
     name: "Bruno Silva",
     username: "brunodev",
     avatar: "https://raw.githubusercontent.com/viniciosneves/code-connect-assets/main/authors/anabeatriz_dev.png",
 };
 
-export const carla = {
+export const carla: UserType = {
     id: 3,
     name: "Carla Souza",
     username: "carlacodes",
     avatar: "https://raw.githubusercontent.com/viniciosneves/code-connect-assets/main/authors/anabeatriz_dev.png",
 };
 
-export const diego = {
+export const diego: UserType = {
     id: 4,
     name: "Diego Martins",
     username: "diegomartins",
     avatar: "https://raw.githubusercontent.com/viniciosneves/code-connect-assets/main/authors/anabeatriz_dev.png",
 };
 
-const allAuthors = [ana, bruno, carla, diego];
+const allAuthors: UserType[] = [ana, bruno, carla, diego];
 
 // Função utilitária para gerar comentários mockados
-function mockComments(postId, count = 2) {
+function mockComments(postId: number, count: number = 2) {
     const texts = [
         "Ótimo post! Muito esclarecedor.",
         "Parabéns pelo conteúdo!",
@@ -43,22 +70,24 @@ function mockComments(postId, count = 2) {
         "Show! Compartilhando com amigos.",
         "Amei o post, ansioso(a) por mais!"
     ];
-    const comments = [];
+    const comments: CommentType[] = [];
     for (let i = 0; i < count; i++) {
         const author = allAuthors[Math.floor(Math.random() * allAuthors.length)];
-        comments.push({
-            id: postId * 100 + i + 1,
-            text: texts[Math.floor(Math.random() * texts.length)],
-            createdAt: new Date(Date.now() - Math.floor(Math.random() * 100000000)).toISOString(),
-            updatedAt: new Date(Date.now() - Math.floor(Math.random() * 100000000)).toISOString(),
-            authorId: author.id,
-            author: {
-                id: author.id,
-                name: author.name,
-                username: author.username,
-                avatar: author.avatar
-            }
-        });
+        if(author){
+            comments.push({
+                id: postId * 100 + i + 1,
+                text: texts[Math.floor(Math.random() * texts.length)] || "",
+                createdAt: new Date(Date.now() - Math.floor(Math.random() * 100000000)).toISOString(),
+                updatedAt: new Date(Date.now() - Math.floor(Math.random() * 100000000)).toISOString(),
+                authorId: author.id,
+                author: {
+                    id: author.id,
+                    name: author.name,
+                    username: author.username,
+                    avatar: author.avatar
+                }
+            });
+        }
     }
     return comments;
 }
@@ -68,7 +97,7 @@ function randomLikes() {
     return Math.floor(Math.random() * 100) + 1;
 }
 
-export const posts = [
+export const posts: postType[] = [
 {
     "cover": "https://raw.githubusercontent.com/viniciosneves/code-connect-assets/main/posts/introducao-ao-react.png",
     "title": "Introdução ao React",

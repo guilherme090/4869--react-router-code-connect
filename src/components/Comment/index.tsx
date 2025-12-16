@@ -1,7 +1,9 @@
 import styles from './comment.module.css'
-import { Avatar } from "../Avatar"
+import { Avatar } from "../Avatar/index.tsx"
 
-export const Comment = ({ comment }) => {
+import type { CommentType } from '../../pages/Feed/data.ts'
+
+export const Comment = ({ comment }: { comment: CommentType }) => {
 
 
     return (<div className={styles.comment}>

@@ -1,6 +1,12 @@
+import type { ReactNode } from 'react'
 import styles from './authformcontainer.module.css'
 
-export const AuthFormContainer = ({ children, bannerSrc }) => {
+type AuthFormContainerProps = {
+    children: ReactNode,
+    bannerSrc: string
+}
+
+export const AuthFormContainer = ({ children, bannerSrc }: AuthFormContainerProps) => {
 
     return (
         <div className={styles.container}>

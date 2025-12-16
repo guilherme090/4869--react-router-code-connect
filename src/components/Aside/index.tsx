@@ -1,11 +1,11 @@
 import logo from './logo.png'
-import AsideLink from '../AsideLink'
-import { IconFeed } from '../icons/IconFeed'
-import { IconAccount } from '../icons/IconAccount'
-import { IconInfo } from '../icons/IconInfo'
-import { IconLogin } from '../icons/IconLogin'
-import { Button } from '../Button'
-import { Link } from '../Link'
+import AsideLink from '../AsideLink/index.tsx'
+import { IconFeed } from '../icons/IconFeed.tsx'
+import { IconAccount } from '../icons/IconAccount.tsx'
+import { IconInfo } from '../icons/IconInfo.tsx'
+import { IconLogin } from '../icons/IconLogin.tsx'
+import { Button } from '../Button/index.tsx'
+import { Link } from '../Link/index.tsx'
 
 import styles from './aside.module.css'
 

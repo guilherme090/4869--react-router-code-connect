@@ -1,11 +1,17 @@
-import { Author } from "../Author"
+import { Author } from "../Author/index.tsx"
 import styles from './cardpost.module.css'
 
-import { ThumbsUpButton } from "./ThumbsUpButton"
-import { IconChat } from "../icons/IconChat"
-import { IconButton } from "../IconButton"
+import { ThumbsUpButton } from "./ThumbsUpButton.tsx"
+import { IconChat } from "../icons/IconChat.tsx"
+import { IconButton } from "../IconButton/index.tsx"
+import type { postType } from "../../pages/Feed/data.ts"
 
-export const CardPost = ({ post }) => {
+export type CardPostType = {
+    key: string,
+    post: postType
+}
+
+export const CardPost = ( { key, post }: CardPostType ) => {
     return (
         <article className={styles.card}>
             <header className={styles.header}>

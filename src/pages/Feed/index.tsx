@@ -1,6 +1,6 @@
-import { AppLayout } from "../../layouts/App"
-import { CardPost } from "../../components/CardPost"
-import { posts } from "./data"
+import { AppLayout } from "../../layouts/App/index.tsx"
+import { CardPost } from "../../components/CardPost/index.tsx"
+import { posts } from "./data.ts"
 import styles from './feed.module.css'
 
 export const Feed = () => {

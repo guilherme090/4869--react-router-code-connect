@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import styles from './iconbutton.module.css'
 
 type IconButtonProps = {
+    disabled?: boolean
     children: ReactNode
 }
 

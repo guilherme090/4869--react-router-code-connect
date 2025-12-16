@@ -1,6 +1,8 @@
 import styles from './avatar.module.css'
 
-export const Avatar = ({ author }) => {
+import type { UserType } from "../../pages/Feed/data.ts"
+
+export const Avatar = ({ author }: { author: UserType }) => {
     const imgSrc = author.avatar
 
     return (

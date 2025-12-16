@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes, ReactNode } from 'react'
+import type { InputHTMLAttributes } from 'react'
 import styles from './input.module.css'
 
 export const Input = (props: InputHTMLAttributes<HTMLInputElement>) => {

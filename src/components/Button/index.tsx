@@ -3,7 +3,7 @@ import styles from './button.module.css';
 
 type ButtonProps = {
     children: ReactNode,
-    outline?: HTMLElement,
+    outline?: boolean,
     href?: string
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
