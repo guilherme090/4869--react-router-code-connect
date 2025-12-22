@@ -7,6 +7,7 @@ import { BlogPost } from "../pages/BlogPost/index.tsx";
 import { Feed } from "../pages/Feed/index.tsx";
 import { AuthLayout } from "../layouts/Auth/index.tsx";
 import { AppLayout } from "../layouts/App/index.tsx";
+import { NotFound } from "../pages/NotFound/index.tsx";
 
 export function AppRouter() {
     return(
@@ -28,6 +29,7 @@ export function AppRouter() {
                 <BlogPost />
               </ProtectedRoute>
             } />
+            <Route path={'*'} element={<NotFound />}/>
           </Route>
         </Routes>
       </BrowserRouter>

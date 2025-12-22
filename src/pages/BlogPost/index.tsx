@@ -7,12 +7,19 @@ import { Author } from "../../components/Author/index.tsx";
 import Typography from "../../components/Typography/index.tsx";
 import { CommentList } from "../../components/CommentList/index.tsx";
 import ReactMarkdown from "react-markdown";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { useEffect } from "react";
 
 export const BlogPost = () => {
   const { slug } = useParams();
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const post = posts.find((post) => post.slug === slug);
+
+  useEffect( () => {
+    if(!post){
+      navigate('/not-found');
+    }
+  }, [navigate, post]);
     
   if (post) {
     return (
@@ -53,5 +60,7 @@ export const BlogPost = () => {
         <CommentList comments={post.comments} />
       </main>
     );
+  } else {
+    return null
   }
 };
