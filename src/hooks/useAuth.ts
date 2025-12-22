@@ -1,6 +1,20 @@
 import { useState, useEffect } from 'react'
 
-const createUser = (name, email, password) => ({
+type UserType = {
+  id: string,
+  name: string,
+  email: string,
+  password: string,
+  createdAt: string
+}
+
+export type RegisterType = {
+  success: boolean, 
+  user?: UserType,
+  error?: string
+}
+
+const createUser = (name: string, email: string, password: string): UserType => ({
   id: Date.now().toString(),
   name,
   email,
@@ -9,7 +23,7 @@ const createUser = (name, email, password) => ({
 })
 
 export const useAuth = () => {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<UserType | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -25,16 +39,16 @@ export const useAuth = () => {
     setIsLoading(false)
   }, [])
 
-  const register = (name, email, password) => {
+  const register = (name: string, email: string, password: string): RegisterType => {
     try {
       const existingUsers = JSON.parse(localStorage.getItem('auth_users') || '[]')
-      const userExists = existingUsers.find(u => u.email === email)
+      const userExists = existingUsers.find((u: UserType) => u.email === email)
       
       if (userExists) {
         throw new Error('Usuário já existe com este email')
       }
 
-      const newUser = createUser(name, email, password)
+      const newUser: UserType = createUser(name, email, password)
       
       existingUsers.push(newUser)
       localStorage.setItem('auth_users', JSON.stringify(existingUsers))
@@ -44,14 +58,18 @@ export const useAuth = () => {
       
       return { success: true, user: newUser }
     } catch (error) {
-      return { success: false, error: error.message }
+      if(error instanceof Error){
+        return { success: false, error: error.message }
+      } else {
+        return { success: false, error: 'Houve um erro desconhecido.'}
+      }
     }
   }
 
-  const login = (email, password) => {
+  const login = (email: string, password: string) => {
     try {
       const users = JSON.parse(localStorage.getItem('auth_users') || '[]')
-      const user = users.find(u => u.email === email && u.password === password)
+      const user = users.find((u: UserType) => u.email === email && u.password === password)
       
       if (!user) {
         throw new Error('Email ou senha incorretos')
@@ -62,7 +80,11 @@ export const useAuth = () => {
       
       return { success: true, user }
     } catch (error) {
-      return { success: false, error: error.message }
+      if(error instanceof Error){
+        return { success: false, error: error.message }
+      } else {
+        return { success: false, error: 'Houve um erro desconhecido.'}
+      }
     }
   }
 

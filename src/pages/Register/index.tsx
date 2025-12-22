@@ -14,22 +14,49 @@ import { TextDivider } from "../../components/TextDivider/index.tsx"
 import { Providers } from "../../components/Providers/index.tsx"
 import { Link } from "../../components/Link/index.tsx"
 import styles from './register.module.css'
+import { useAuth } from "../../hooks/useAuth.ts"
+import { useNavigate } from "react-router"
 
 export const Register = () => {
+
+    const { register } = useAuth();
+    const navigate = useNavigate();
+
+    const onSubmit = ( formData: FormData ) => {
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const password = formData.get('password');
+
+        let response = null
+
+        if (typeof name === 'string' && 
+            typeof email === 'string' &&
+            typeof password === 'string'
+        ) {
+            response = register( name, email, password );
+            if (response.success) {
+                navigate('/auth/login');
+            } else {
+                console.error(response.error);
+            }
+        }
+    
+    }
+
     return (
         <AuthLayout>
             <AuthFormContainer bannerSrc={banner}>
                 <Typography variant="h1" color="--offwhite">Cadastro</Typography>
                 <Typography variant="h2" color="--offwhite">Olá! Preencha seus dados.</Typography>
-                <Form action="">
+                <Form action={ onSubmit }>
                     <Fieldset>
                         <Label>
-                            Nome
+                            Name
                         </Label>
                         <Input
-                            name="nome"
-                            id="nome"
-                            placeholder="Nome completo"
+                            name="name"
+                            id="name"
+                            placeholder="Full name"
                             required
                         />
                     </Fieldset>
@@ -41,13 +68,13 @@ export const Register = () => {
                             name="email"
                             id="email"
                             type="email"
-                            placeholder="Digite seu e-mail"
+                            placeholder="Type your e-mail"
                             required
                         />
                     </Fieldset>
                     <Fieldset>
                         <Label>
-                            Senha
+                            Password
                         </Label>
                         <Input
                             name="password"
@@ -55,21 +82,21 @@ export const Register = () => {
                             type="password"
                             required
                         />
-                        <Checkbox label="Lembrar-me" required />
+                        <Checkbox label="Lembrar-me" />
                     </Fieldset>
                     <Button type="submit">
-                        Login <IconArrowFoward />
+                        Cadastrar-se <IconArrowFoward />
                     </Button>
                 </Form>
                 <div>
-                    <TextDivider text="ou entre com outras contas" />
+                    <TextDivider text="ou conectar-se com outras contas" />
                     <Providers />
                 </div>
                 <footer className={styles.footer}>
                     <Typography variant="body" color="--offwhite">
                         Já tem conta?
                     </Typography>
-                    <Link href='#'>
+                    <Link href='/auth/login'>
                         <Typography variant="body" color="--highlight-green">
                             Faça seu login!
                         </Typography>

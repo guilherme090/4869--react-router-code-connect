@@ -1,15 +1,11 @@
-import type { ReactNode } from 'react'
 import styles from './auth.module.css'
+import { Outlet } from 'react-router'
 
-type AuthLayoutProps = {
-    children: ReactNode
-}
-
-export const AuthLayout = ({ children }: AuthLayoutProps) => {
+export const AuthLayout = () => {
     return (
         <div className={styles.container}>
             <div className={styles.card}>
-                {children}
+                <Outlet />
             </div>
         </div>
     )

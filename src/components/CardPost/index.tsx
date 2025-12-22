@@ -5,13 +5,14 @@ import { ThumbsUpButton } from "./ThumbsUpButton.tsx"
 import { IconChat } from "../icons/IconChat.tsx"
 import { IconButton } from "../IconButton/index.tsx"
 import type { postType } from "../../pages/Feed/data.ts"
+import { Link } from "react-router"
 
 export type CardPostType = {
-    key: string,
+    id: string,
     post: postType
 }
 
-export const CardPost = ( { key, post }: CardPostType ) => {
+export const CardPost = ( { id, post }: CardPostType ) => {
     return (
         <article className={styles.card}>
             <header className={styles.header}>
@@ -25,7 +26,7 @@ export const CardPost = ( { key, post }: CardPostType ) => {
             <section className={styles.body}>
                 <h2>{post.title}</h2>
                 <p>{post.body}</p>
-                <a href="#">Ver detalhes</a>
+                <Link to={`/blog-post/${post.slug}`}>Ver detalhes</Link>
             </section>
             <footer className={styles.footer}>
                 <div className={styles.actions}>

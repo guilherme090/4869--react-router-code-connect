@@ -1,15 +1,17 @@
 import type { AnchorHTMLAttributes, ReactNode } from 'react'
 import styles from './link.module.css'
+import { Link as RouterLink } from 'react-router'
 
-type LinkProps = {
+type RouterLinkProps = {
+    href: string
     children: ReactNode
 } & AnchorHTMLAttributes<HTMLAnchorElement>
 
-export const Link = ({ children, ...props }: LinkProps) => {
+export const Link = ({ children, href, ...props }: RouterLinkProps) => {
     const className = props.className || ''
     return (
-        <a {...props} className={`${styles.link} ${className}`}>
+        <RouterLink to={href} {...props} className={`${styles.link} ${className}`}>
             {children}
-        </a>
+        </RouterLink>
     )
 }
